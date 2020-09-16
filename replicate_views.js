@@ -20,7 +20,7 @@ function collectViewsList () {
             password: originPassword
         }
     }).then(function (response) {
-        console.log('GET TOTAL %s VIEWS, MAPPING to DB', response.data.views.length)
+        console.log('GET TOTAL %s VIEWS, MAPPING to DB', response.data.views.length);
         var createCount = 0;
         response.data.views.forEach(async view => {
             // console.log(view.title);
