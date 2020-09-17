@@ -159,19 +159,19 @@ async function manipulateForm (form) {
         });
 
         form.end_user_conditions.forEach((condition, index) => {
-            form.end_user_conditions[index].parent_field_id = mappingIds(all_origin_fields, condition.parent_field_id);
+            form.end_user_conditions[index].parent_field_id = mappingIds(tfields_all, condition.parent_field_id);
             if (condition.child_fields.length > 0) {
                 condition.child_fields.forEach((conditionChild, childIndex) => {
-                    form.end_user_conditions[index].child_fields[childIndex].id = mappingIds(all_origin_fields, conditionChild.id);
+                    form.end_user_conditions[index].child_fields[childIndex].id = mappingIds(tfields_all, conditionChild.id);
                 });
             }
         });
 
         form.agent_conditions.forEach((condition, index) => {
-            form.agent_conditions[index].parent_field_id = mappingIds(all_origin_fields, condition.parent_field_id);
+            form.agent_conditions[index].parent_field_id = mappingIds(tfields_all, condition.parent_field_id);
             if (condition.child_fields.length > 0) {
                 condition.child_fields.forEach((conditionChild, childIndex) => {
-                    form.agent_conditions[index].child_fields[childIndex].id = mappingIds(all_origin_fields, conditionChild.id);
+                    form.agent_conditions[index].child_fields[childIndex].id = mappingIds(tfields_all, conditionChild.id);
                 });
             }
         });
@@ -227,8 +227,7 @@ function updateFormDb (response, id, name) {
             createdFormsName = response.data.ticket_form.name;
         } else {
             if (response.data.hasOwnProperty('details')) {
-                errorCause = response.data.details.base[0].description 
-                || response.data.details.toString();
+                errorCause = JSON.stringify(response.data);
             } else {
                 errorCause = response.data.description;
             }
