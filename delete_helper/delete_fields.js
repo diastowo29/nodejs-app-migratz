@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 
 var zd_ticketfields_api = '/api/v2/ticket_fields'
 
-var fieldsDestApi = generateApi(destDomain) + zd_ticketfields_api + '.json';
+var fieldsDestApi = `${generateApi(destDomain)}${zd_ticketfields_api}.json`;
 
 collectFieldsList();
 
@@ -20,7 +20,7 @@ function collectFieldsList () {
     }).then(function (response) {
         response.data.ticket_fields.forEach(ticket_field => {
             if (ticket_field.removable) {
-                var urlDelete = generateApi(destDomain) + zd_ticketfields_api + '/' + ticket_field.id + '.json';
+                var urlDelete = `${generateApi(destDomain)}${zd_ticketfields_api}/${ticket_field.id}.json`;
                 // console.log(urlDelete)
                 axios({
                     method: 'DELETE',
