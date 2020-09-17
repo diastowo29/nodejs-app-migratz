@@ -1,7 +1,5 @@
 const axios = require('axios');
-require('./base')
-const { tfieldsTable } = require('./sequelizer');
-const { Op } = require("sequelize");
+require('../base')
 
 var zd_ticketfields_api = '/api/v2/ticket_fields'
 

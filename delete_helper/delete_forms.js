@@ -1,7 +1,5 @@
 const axios = require('axios');
-require('./base')
-const { tfieldsTable } = require('./sequelizer');
-const { Op } = require("sequelize");
+require('../base')
 
 var zd_ticketforms_api = '/api/v2/ticket_forms'
 
@@ -21,19 +19,19 @@ function collectFieldsList () {
         response.data.ticket_forms.forEach(ticket_form => {
             var urlDelete = `${generateApi(destDomain)}${zd_ticketforms_api}/${ticket_form.id}.json`;
             console.log(urlDelete)
-            axios({
-                method: 'DELETE',
-                url: urlDelete,
-                auth: {
-                    username: destUsername,
-                    password: destPassword
-                }
-            }).then(function (deleteResponse) {
-                console.log(deleteResponse.status)
-            }).catch(function (error) {
-                console.log(error.response.data.details)
-                console.log('ERROR: delete form: %s error', ticket_form.name)
-            })
+            // axios({
+            //     method: 'DELETE',
+            //     url: urlDelete,
+            //     auth: {
+            //         username: destUsername,
+            //         password: destPassword
+            //     }
+            // }).then(function (deleteResponse) {
+            //     console.log(deleteResponse.status)
+            // }).catch(function (error) {
+            //     console.log(error.response.data.details)
+            //     console.log('ERROR: delete form: %s error', ticket_form.name)
+            // })
         });
     });
 }
